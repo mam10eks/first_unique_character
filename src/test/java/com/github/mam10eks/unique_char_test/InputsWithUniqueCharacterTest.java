@@ -45,4 +45,10 @@ public class InputsWithUniqueCharacterTest
 	{
 		Assert.assertEquals(expectedCharacter, MemorySavingSolution.determineFirstUniqueCharacter(input));
 	}
+	
+	@Test
+	public void checkThatTimeSavingSolutionFindsTheExpectedCharacter()
+	{
+		Assert.assertEquals(expectedCharacter, TimeSavingSolution.determineFirstUniqueCharacter(input));
+	}
 }
