@@ -2,53 +2,45 @@ package com.github.mam10eks.unique_char_test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Stream;
 
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
-
-import lombok.Data;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 /**
  * 
  * @author Maik Fröbe
  *
  */
-@Data
-@RunWith(Parameterized.class)
 public class InputsWithUniqueCharacterTest
 {
-	private final String input;
-	
-	private final char expectedCharacter;
-	
-	@Parameters
-	public static Collection<Object[]> parameters()
+	private static Stream<Arguments> parameters()
 	{
-		return Arrays.asList(
-				new Object[] {"abcd", 'a'},
-				new Object[] {"e", 'e'},
-				new Object[] {"aab", 'b'},
-				new Object[] {"aacbb", 'c'},
-				new Object[] {"ababe", 'e'},
-				new Object[] {"hello", 'h'},
-				new Object[] {"helloh", 'e'},
-				new Object[] {"heleloh", 'o'},
-				new Object[] {"abqba", 'q'}
-				);
+		return Stream.of(
+			Arguments.of("abcd", 'a'),
+			Arguments.of("e", 'e'),
+			Arguments.of("aab", 'b'),
+			Arguments.of("aacbb", 'c'),
+			Arguments.of("ababe", 'e'),
+			Arguments.of("hello", 'h'),
+			Arguments.of("helloh", 'e'),
+			Arguments.of("heleloh", 'o'),
+			Arguments.of("abqba", 'q'));
 	}
 	
-	@Test
-	public void checkThatMemorySavingSolutionFindsTheExpectedCharacter()
+	@ParameterizedTest
+	@MethodSource("parameters")
+	public void checkThatMemorySavingSolutionFindsTheExpectedCharacter(String input, char expectedCharacter)
 	{
-		Assert.assertEquals(expectedCharacter, MemorySavingSolution.determineFirstUniqueCharacter(input));
+		Assertions.assertEquals(expectedCharacter, MemorySavingSolution.determineFirstUniqueCharacter(input));
 	}
-	
-	@Test
-	public void checkThatTimeSavingSolutionFindsTheExpectedCharacter()
+
+	@ParameterizedTest
+	@MethodSource("parameters")
+	public void checkThatTimeSavingSolutionFindsTheExpectedCharacter(String input, char expectedCharacter)
 	{
-		Assert.assertEquals(expectedCharacter, TimeSavingSolution.determineFirstUniqueCharacter(input));
+		Assertions.assertEquals(expectedCharacter, TimeSavingSolution.determineFirstUniqueCharacter(input));
 	}
 }

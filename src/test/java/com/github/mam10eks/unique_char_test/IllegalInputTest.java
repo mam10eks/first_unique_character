@@ -2,11 +2,13 @@ package com.github.mam10eks.unique_char_test;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Stream;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-import org.junit.runners.Parameterized.Parameters;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 import lombok.Data;
 
@@ -15,33 +17,32 @@ import lombok.Data;
  * @author Maik Fröbe
  *
  */
-@Data
-@RunWith(Parameterized.class)
 public class IllegalInputTest
 {
-	private final String illegalInput;
-	
-	@Parameters
-	public static Collection<String[]> parameters()
+	private static Stream<Arguments> parameters()
 	{
-		return Arrays.asList(
-				new String[] {null},
-				new String[] {""},
-				new String[] {"aa"},
-				new String[] {"aabb"},
-				new String[] {"abab"},
-				new String[] {"abba"});
+		return Stream.of(
+			Arguments.of((String) null),
+			Arguments.of(""),
+			Arguments.of("aa"),
+			Arguments.of("aabb"),
+			Arguments.of("abab"),
+			Arguments.of("abba"));
 	}
 	
-	@Test(expected=Exception.class)
-	public void checkThatIllegalInputCausesExceptionForMemorySavingSolution()
+	@ParameterizedTest
+	@MethodSource("parameters")
+	public void checkThatIllegalInputCausesExceptionForMemorySavingSolution(String illegalInput)
 	{
-		MemorySavingSolution.determineFirstUniqueCharacter(illegalInput);
+		Assertions.assertThrows(Exception.class,
+				() -> MemorySavingSolution.determineFirstUniqueCharacter(illegalInput));
 	}
 	
-	@Test(expected=Exception.class)
-	public void checkThatIllegalInputCausesExceptionForTimeSavingSolution()
+	@ParameterizedTest
+	@MethodSource("parameters")
+	public void checkThatIllegalInputCausesExceptionForTimeSavingSolution(String illegalInput)
 	{
-		TimeSavingSolution.determineFirstUniqueCharacter(illegalInput);
+		Assertions.assertThrows(Exception.class,
+				() -> TimeSavingSolution.determineFirstUniqueCharacter(illegalInput));
 	}
 }
