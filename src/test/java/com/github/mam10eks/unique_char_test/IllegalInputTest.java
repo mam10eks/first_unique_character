@@ -38,4 +38,10 @@ public class IllegalInputTest
 	{
 		MemorySavingSolution.determineFirstUniqueCharacter(illegalInput);
 	}
+	
+	@Test(expected=Exception.class)
+	public void checkThatIllegalInputCausesExceptionForTimeSavingSolution()
+	{
+		TimeSavingSolution.determineFirstUniqueCharacter(illegalInput);
+	}
 }
