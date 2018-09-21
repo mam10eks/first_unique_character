@@ -34,7 +34,7 @@ public class InputsWithUniqueCharacterTest
 				new Object[] {"aacbb", 'c'},
 				new Object[] {"ababe", 'e'},
 				new Object[] {"hello", 'h'},
-				new Object[] {"helloh", 'h'},
+				new Object[] {"helloh", 'e'},
 				new Object[] {"heleloh", 'o'},
 				new Object[] {"abqba", 'q'}
 				);
