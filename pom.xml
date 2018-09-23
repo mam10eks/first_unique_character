@@ -42,35 +42,6 @@
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>com.atlassian.maven.plugins</groupId>
-				<artifactId>clover-maven-plugin</artifactId>
-				<version>4.1.2</version>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<id>setup-clover</id>
-						<goals>
-							<goal>setup</goal>
-						</goals>
-					</execution>
-					<execution>
-						<phase>prepare-package</phase>
-						<id>check-clover</id>
-						<goals>
-							<goal>check</goal>
-						</goals>
-					</execution>
-					<execution>
-						<phase>install</phase>
-						<id>aggregate-clover</id>
-						<goals>
-							<goal>aggregate</goal>
-							<goal>clover</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
 				<version>0.8.2</version>
