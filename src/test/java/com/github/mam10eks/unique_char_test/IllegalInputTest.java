@@ -1,16 +1,11 @@
 package com.github.mam10eks.unique_char_test;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
-
-import lombok.Data;
 
 /**
  * 
@@ -19,7 +14,7 @@ import lombok.Data;
  */
 public class IllegalInputTest
 {
-	private static Stream<Arguments> parameters()
+	static Stream<Arguments> parameters()
 	{
 		return Stream.of(
 			Arguments.of((String) null),
@@ -44,5 +39,13 @@ public class IllegalInputTest
 	{
 		Assertions.assertThrows(Exception.class,
 				() -> TimeSavingSolution.determineFirstUniqueCharacter(illegalInput));
+	}
+	
+	@ParameterizedTest
+	@MethodSource("parameters")
+	public void checkThatIllegalInputCausesExceptionForStreamingApiSolution(String illegalInput)
+	{
+		Assertions.assertThrows(Exception.class,
+				() -> StreamingApiSolution.determineFirstUniqueCharacter(illegalInput));
 	}
 }

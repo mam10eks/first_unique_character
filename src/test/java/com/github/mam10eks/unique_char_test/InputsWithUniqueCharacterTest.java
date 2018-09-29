@@ -1,7 +1,5 @@
 package com.github.mam10eks.unique_char_test;
 
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.stream.Stream;
 
 import org.junit.jupiter.api.Assertions;
@@ -16,7 +14,7 @@ import org.junit.jupiter.params.provider.MethodSource;
  */
 public class InputsWithUniqueCharacterTest
 {
-	private static Stream<Arguments> parameters()
+	static Stream<Arguments> parameters()
 	{
 		return Stream.of(
 			Arguments.of("abcd", 'a'),
@@ -42,5 +40,12 @@ public class InputsWithUniqueCharacterTest
 	public void checkThatTimeSavingSolutionFindsTheExpectedCharacter(String input, char expectedCharacter)
 	{
 		Assertions.assertEquals(expectedCharacter, TimeSavingSolution.determineFirstUniqueCharacter(input));
+	}
+	
+	@ParameterizedTest
+	@MethodSource("parameters")
+	public void checkThatStreamingApiSolutionFindsTheExpectedCharacter(String input, char expectedCharacter)
+	{
+		Assertions.assertEquals(expectedCharacter, StreamingApiSolution.determineFirstUniqueCharacter(input));
 	}
 }
